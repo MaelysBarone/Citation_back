@@ -1,3 +1,4 @@
+/** @format */
 const { User } = require("../models");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -7,8 +8,8 @@ exports.signUp = async (req, res) => {
   const { mail, password } = req.body;
   let salt = await bcrypt.genSalt(10);
   let hashedPassword = await bcrypt.hash(password, salt);
+  // const token = jwt.sign({ mail: mail }, process.env.ACCES_TOKEN_SECRET);
 
-  const token = jwt.sign({ mail: mail }, process.env.ACCES_TOKEN_SECRET);
   const alreadyExistMail = await User.findOne({
     where: { mail: req.res.mail },
   }).catch((err) => {
@@ -22,11 +23,11 @@ exports.signUp = async (req, res) => {
   const newUser = await new User({
     mail,
     password: hashedPassword,
-    confirmationCode: token,
+    // confirmationCode: token,
   });
   const saveUser = newUser
     .save()
-    .then((response) => {
+    .then(() => {
       res.json({ message: "Thanks for registering !" });
     })
     .catch((err) => {
@@ -37,18 +38,18 @@ exports.signUp = async (req, res) => {
     });
 };
 
+
 //Connexion
 exports.signIn = async (req, res) => {
   const mail = req.body.mail;
   const password = req.body.password;
   let salt = await bcrypt.genSalt(10);
   let hashedPassword = await bcrypt.hash(password, salt);
-
+  console.log(password);
   const user = {
     mail,
     password,
   };
-
   const signInWithMail = await User.findOne({ where: { mail } }).catch(
     (err) => {
       console.log("Error : ", err);
@@ -64,7 +65,6 @@ exports.signIn = async (req, res) => {
       message: "email or password not found.",
     });
   } else if (compare == true) {
-      //demander à caro.
     const accessToken = jwt.sign(
       {
         id: signInWithMail.id,
@@ -72,6 +72,7 @@ exports.signIn = async (req, res) => {
       },
       process.env.ACCESS_TOKEN_SECRET
     );
+    res.send("connexion ok")
   }
 };
 
