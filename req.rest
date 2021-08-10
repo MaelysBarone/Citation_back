@@ -24,3 +24,33 @@ Content-Type: application/json
 }
 
 ###
+
+POST http://localhost:3000/api/v1/quote/create
+Content-Type: application/json
+
+{
+
+    "autor": "mmmmmm",
+    "citation": "ssssssssssssssssssssssssssss"
+
+}
+
+###
+
+DELETE  http://localhost:3000/api/v1/quote/delete/2
+
+###
+
+PUT  http://localhost:3000/api/v1/quote/update/3
+Content-Type: application/json
+
+{
+
+    "autor": "fafafaaf",
+    "citation": "zjdaidikdbzejhdbzejhdbzejhdbzjhdbjhb"
+
+}
+
+###
+
+GET   http://localhost:3000/api/v1/quotes

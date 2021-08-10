@@ -8,7 +8,6 @@ exports.signUp = async (req, res) => {
   const { mail, password } = req.body;
   let salt = await bcrypt.genSalt(10);
   let hashedPassword = await bcrypt.hash(password, salt);
-  // const token = jwt.sign({ mail: mail }, process.env.ACCES_TOKEN_SECRET);
 
   const alreadyExistMail = await User.findOne({
     where: { mail: req.res.mail },
@@ -23,7 +22,6 @@ exports.signUp = async (req, res) => {
   const newUser = await new User({
     mail,
     password: hashedPassword,
-    // confirmationCode: token,
   });
   const saveUser = newUser
     .save()
