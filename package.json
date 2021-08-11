@@ -1,0 +1,32 @@
+{
+  "name": "donne_une_citation",
+  "version": "1.0.0",
+  "description": "Brief final -- Simplon",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaelysBarone/Donne_une_citation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaelysBarone/Donne_une_citation/issues"
+  },
+  "homepage": "https://github.com/MaelysBarone/Donne_une_citation#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "mysql2": "^2.3.0",
+    "sequelize": "^6.6.5",
+    "sequelize-cli": "^6.2.0"
+  }
+}
